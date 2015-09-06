@@ -1,0 +1,9 @@
+# posnk package configuration
+PKGINFO_NAME="getty"
+PKGINFO_DESC="POS getty, the terminal setup program"
+PKGINFO_FETCHTYPE="git"
+PKGINFO_GITURL="https://github.com/posnk/getty.git"
+PGKINFO_DOPATCH="no"
+PKGINFO_BUILDTYPE="pos"
+PKGINFO_VERSION="0.0.1"
+PKGINFO_DEPS="lib/newlib-2.1.0 core/login"

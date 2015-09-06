@@ -1,0 +1,9 @@
+# posnk package configuration
+PKGINFO_NAME="preinit"
+PKGINFO_DESC="POS preinit, Init process for ramdisk-based disk booting"
+PKGINFO_FETCHTYPE="git"
+PKGINFO_GITURL="https://github.com/posnk/preinit.git"
+PGKINFO_DOPATCH="no"
+PKGINFO_BUILDTYPE="pos"
+PKGINFO_VERSION="0.0.1"
+PKGINFO_DEPS="lib/newlib-2.1.0"

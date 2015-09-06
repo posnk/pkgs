@@ -1,0 +1,9 @@
+# posnk package configuration
+PKGINFO_NAME="login"
+PKGINFO_DESC="POS login, the user authentication program for pos"
+PKGINFO_FETCHTYPE="git"
+PKGINFO_GITURL="https://github.com/posnk/login.git"
+PGKINFO_DOPATCH="no"
+PKGINFO_BUILDTYPE="pos"
+PKGINFO_VERSION="0.0.1"
+PKGINFO_DEPS="lib/newlib-2.1.0"
