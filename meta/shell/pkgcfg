@@ -1,0 +1,7 @@
+# posnk package configuration
+PKGINFO_NAME="shell"
+PKGINFO_DESC=`cat $PKGMGR_PKGDIR/pkgdesc`
+PKGINFO_VERSION="meta"
+PKGINFO_FETCHTYPE="meta"
+PKGINFO_BUILDTYPE="meta"
+PKGINFO_DEPS="core/busybox-1.22.1"
