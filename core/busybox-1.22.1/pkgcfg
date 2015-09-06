@@ -1,0 +1,12 @@
+# posnk package configuration
+PKGINFO_NAME="busybox-1.22.1"
+PKGINFO_DESC="Ported set of core utilities"
+PKGINFO_FETCHTYPE="dist"
+PKGINFO_FETCHURL="http://www.busybox.net/downloads/busybox-1.22.1.tar.bz2"
+PKGINFO_FETCHOPTS="-xjf"
+PGKINFO_DOPATCH="yes"
+PKGINFO_PATCHTYPE="pkg"
+PKGINFO_BUILDTYPE="cmd"
+PKGINFO_BUILDCMD="buildbusybox $PKGENV_TARGET"
+PKGINFO_VERSION="0.0.1"
+PKGINFO_DEPS="lib/newlib-2.1.0"
