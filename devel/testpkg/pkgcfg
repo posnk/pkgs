@@ -1,0 +1,10 @@
+# posnk package configuration
+PKGINFO_NAME="testpkg"
+PKGINFO_DESC=`cat $PKGMGR_PKGDIR/pkgdesc`
+PKGINFO_VERSION="0.0.1"
+PKGINFO_FETCHTYPE="dist"
+PKGINFO_FETCHOPTS="-xzf"
+PKGINFO_FETCHURL=""
+PGKINFO_DOPATCH="yes"
+PKGINFO_BUILDCMD=""
+PKGINFO_DEPS="lib/testdep lib/newlib-2.1.0"

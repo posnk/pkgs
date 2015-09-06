@@ -1,0 +1,9 @@
+# posnk package configuration
+PKGINFO_NAME="newlib-2.1.0"
+PKGINFO_DESC=`cat $PKGMGR_PKGDIR/pkgdesc`
+PKGINFO_FETCHTYPE="dist"
+PKGINFO_FETCHOPTS="-xzf"
+PKGINFO_FETCHURL="ftp://sourceware.org/pub/newlib/newlib-2.1.0.tar.gz"
+PKGINFO_PATCHTYPE="pkg"
+PKGINFO_BUILDCMD="buildnewlib $PKGENV_TARGET"
+PKGINFO_DEPS=""

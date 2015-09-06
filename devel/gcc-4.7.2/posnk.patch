@@ -1,0 +1,121 @@
+diff -rupN gcc-4.7.2/config.sub ../src3m/gcc-4.7.2/config.sub
+--- gcc-4.7.2/config.sub	2012-08-06 16:34:27.000000000 +0200
++++ ../src3m/gcc-4.7.2/config.sub	2015-03-27 13:07:59.103913880 +0100
+@@ -1333,7 +1333,7 @@ case $os in
+ 	      | -hpux* | -unos* | -osf* | -luna* | -dgux* | -auroraux* | -solaris* \
+ 	      | -sym* | -kopensolaris* \
+ 	      | -amigaos* | -amigados* | -msdos* | -newsos* | -unicos* | -aof* \
+-	      | -aos* | -aros* \
++	      | -aos* | -posnk* | -aros* \
+ 	      | -nindy* | -vxsim* | -vxworks* | -ebmon* | -hms* | -mvs* \
+ 	      | -clix* | -riscos* | -uniplus* | -iris* | -rtu* | -xenix* \
+ 	      | -hiux* | -386bsd* | -knetbsd* | -mirbsd* | -netbsd* \
+diff -rupN gcc-4.7.2/fixincludes/mkfixinc.sh ../src3m/gcc-4.7.2/fixincludes/mkfixinc.sh
+--- gcc-4.7.2/fixincludes/mkfixinc.sh	2011-09-22 16:00:17.000000000 +0200
++++ ../src3m/gcc-4.7.2/fixincludes/mkfixinc.sh	2015-03-27 16:05:16.352233292 +0100
+@@ -12,6 +12,7 @@ target=fixinc.sh
+ # Check for special fix rules for particular targets
+ case $machine in
+     i?86-*-cygwin* | \
++    *-*-posnk* | \
+     i?86-*-mingw32* | \
+     x86_64-*-mingw32* | \
+     i?86-*-interix* | \
+diff -rupN gcc-4.7.2/gcc/config/posnk.h ../src3m/gcc-4.7.2/gcc/config/posnk.h
+--- gcc-4.7.2/gcc/config/posnk.h	1970-01-01 01:00:00.000000000 +0100
++++ ../src3m/gcc-4.7.2/gcc/config/posnk.h	2015-03-27 13:07:59.119913882 +0100
+@@ -0,0 +1,19 @@
++#undef TARGET_OS_CPP_BUILTINS
++#define TARGET_OS_CPP_BUILTINS()      \
++    do {                                \
++      builtin_define_std ("posnk");      \
++      builtin_define_std ("unix");      \
++      builtin_assert ("system=posnk");   \
++      builtin_assert ("system=unix");   \
++    } while(0);
++
++#undef ENDFILE_SPEC
++#define ENDFILE_SPEC "crtend.o%s \
++            crtn.o%s"
++
++#undef STARTFILE_SPEC
++#define STARTFILE_SPEC "%{!shared: \
++          %{!symbolic: \
++           %{pg:gcrt0.o%s}%{!pg:%{p:mcrt0.o%s}%{!p:crt0.o%s}}}}\
++         crti.o%s \
++         crtbegin.o%s"
+diff -rupN gcc-4.7.2/gcc/config.gcc ../src3m/gcc-4.7.2/gcc/config.gcc
+--- gcc-4.7.2/gcc/config.gcc	2012-09-12 11:03:54.000000000 +0200
++++ ../src3m/gcc-4.7.2/gcc/config.gcc	2015-03-30 21:34:01.956500650 +0200
+@@ -526,6 +526,13 @@ tm_defines="$tm_defines LIBC_GLIBC=1 LIB
+ 
+ # Common parts for widely ported systems.
+ case ${target} in
++*-*-posnk*)
++   extra_parts="crtbegin.o crtend.o"
++   gas=yes
++   gnu_ld=yes
++   default_use_cxa_atexit=yes
++   ;;
++
+ *-*-darwin*)
+   tmake_file="t-darwin ${cpu_type}/t-darwin"
+   tm_file="${tm_file} darwin.h"
+@@ -834,7 +841,7 @@ arm-wrs-vxworks)
+ 	;;
+ arm*-*-freebsd*)
+ 	tm_file="dbxelf.h elfos.h ${fbsd_tm_file} arm/elf.h arm/aout.h arm/freebsd.h arm/arm.h"
+-	tmake_file="${tmake_file} arm/t-arm arm/t-strongarm-elf"
++	tmake_file="${tmake_file} arm/t-arm arm/t-strongarm-elf"	
+ 	;;
+ arm*-*-netbsdelf*)
+ 	tm_file="dbxelf.h elfos.h netbsd.h netbsd-elf.h arm/elf.h arm/aout.h arm/arm.h arm/netbsd-elf.h"
+@@ -928,6 +935,11 @@ arm*-*-elf)
+ 	tm_file="dbxelf.h elfos.h newlib-stdint.h arm/unknown-elf.h arm/elf.h arm/aout.h arm/arm.h"
+ 	tmake_file="arm/t-arm arm/t-arm-elf"
+ 	;;
++arm*-*-posnk*)
++	tm_file="newlib-stdint.h dbxelf.h elfos.h arm/elf.h arm/unknown-elf.h arm/arm.h arm/aout.h posnk.h"
++	tmake_file="arm/t-arm arm/t-arm-elf"
++	use_fixproto=yes
++	;;
+ arm*-wince-pe*)
+ 	tm_file="arm/semi.h arm/aout.h arm/arm.h arm/coff.h dbxcoff.h arm/pe.h arm/wince-pe.h"
+ 	tmake_file="arm/t-arm arm/t-wince-pe"
+@@ -1214,6 +1226,11 @@ i[34567]86-*-freebsd*)
+ x86_64-*-freebsd*)
+ 	tm_file="${tm_file} i386/unix.h i386/att.h dbxelf.h elfos.h ${fbsd_tm_file} i386/x86-64.h i386/freebsd.h i386/freebsd64.h"
+ 	;;
++i[3-7]86-*-posnk*)
++	tm_file="${tm_file} newlib-stdint.h i386/unix.h i386/att.h dbxelf.h elfos.h i386/i386elf.h posnk.h"
++	tmake_file="i386/t-i386elf t-svr4"
++	use_fixproto=yes
++	;;
+ i[34567]86-*-netbsdelf*)
+ 	tm_file="${tm_file} i386/unix.h i386/att.h dbxelf.h elfos.h netbsd.h netbsd-elf.h i386/netbsd-elf.h"
+ 	extra_options="${extra_options} netbsd.opt netbsd-elf.opt"
+diff -rupN gcc-4.7.2/libgcc/config.host ../src3m/gcc-4.7.2/libgcc/config.host
+--- gcc-4.7.2/libgcc/config.host	2012-09-05 14:19:47.000000000 +0200
++++ ../src3m/gcc-4.7.2/libgcc/config.host	2015-03-28 17:50:39.135017532 +0100
+@@ -379,6 +379,10 @@ arm*-*-elf)
+ 	tmake_file="$tmake_file arm/t-arm arm/t-elf t-softfp-sfdf t-softfp-excl arm/t-softfp t-softfp"
+ 	extra_parts="$extra_parts crti.o crtn.o"
+ 	;;
++arm-*-posnk*)
++	extra_parts="$extra_parts crtbegin.o crtend.o crti.o crtn.o"
++	tmake_file="$tmake_file arm/t-arm arm/t-elf t-softfp-sfdf t-softfp-excl arm/t-softfp t-softfp"
++	;;
+ arm*-wince-pe*)
+ 	tmake_file="$tmake_file arm/t-arm arm/t-wince-pe"
+ 	;;
+@@ -1138,6 +1142,10 @@ mep*-*-*)
+ 	tmake_file="mep/t-mep t-fdpbit"
+ 	extra_parts="crtbegin.o crtend.o"
+ 	;;
++i[3-7]86-*-posnk*)
++	extra_parts="crtbegin.o crtend.o"
++	tmake_file="$tmake_file i386/t-crtstuff"
++	;;
+ *)
+ 	echo "*** Configuration ${host} not supported" 1>&2
+ 	exit 1

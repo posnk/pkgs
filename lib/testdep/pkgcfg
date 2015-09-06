@@ -1,0 +1,9 @@
+# posnk package configuration
+PKGINFO_NAME="testdep"
+PKGINFO_DESC="Test dependency"
+PKGINFO_FETCHTYPE="dist"
+PKGINFO_FETCHOPTS="-xzf"
+PKGINFO_FETCHURL=""
+PGKINFO_DOPATCH="yes"
+PKGINFO_BUILDCMD=""
+PKGINFO_DEPS="devel/testpkg"
