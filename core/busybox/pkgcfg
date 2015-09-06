@@ -1,9 +1,0 @@
-# posnk package configuration
-PKGINFO_NAME="init"
-PKGINFO_DESC="POS init, the system initialization daemon"
-PKGINFO_FETCHTYPE="git"
-PKGINFO_GITURL="https://github.com/posnk/init.git"
-PGKINFO_DOPATCH="no"
-PKGINFO_BUILDTYPE="pos"
-PKGINFO_VERSION="0.0.1"
-PKGINFO_DEPS="lib/newlib-2.1.0"
