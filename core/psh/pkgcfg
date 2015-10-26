@@ -1,0 +1,9 @@
+# posnk package configuration
+PKGINFO_NAME="psh"
+PKGINFO_DESC="POS shell, provides a Bourne-like shell for POS"
+PKGINFO_FETCHTYPE="git"
+PKGINFO_GITURL="https://github.com/posnk/psh.git"
+PGKINFO_DOPATCH="no"
+PKGINFO_BUILDTYPE="pos"
+PKGINFO_VERSION="0.0.1"
+PKGINFO_DEPS="lib/newlib-2.1.0"
