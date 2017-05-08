@@ -4,4 +4,4 @@ PKGINFO_DESC=`cat $PKGMGR_PKGDIR/pkgdesc`
 PKGINFO_VERSION="meta"
 PKGINFO_FETCHTYPE="meta"
 PKGINFO_BUILDTYPE="meta"
-PKGINFO_DEPS="meta/shell core/getty core/init core/chroot core/login core/preinit"
+PKGINFO_DEPS="meta/shell core/getty core/init core/chroot core/login core/preinit core/corecfg"

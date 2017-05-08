@@ -1,0 +1,12 @@
+diff -rupN /media/stor14/Projects/OS/posnk_buildenv/src3p/mpc-1.0.2/config.sub mpc-1.0.2/config.sub
+--- /media/stor14/Projects/OS/posnk_buildenv/src3p/mpc-1.0.2/config.sub	2012-09-06 18:30:55.000000000 +0200
++++ mpc-1.0.2/config.sub	2014-05-07 02:19:25.425145675 +0200
+@@ -1348,7 +1348,7 @@ case $os in
+ 	      | -hpux* | -unos* | -osf* | -luna* | -dgux* | -auroraux* | -solaris* \
+ 	      | -sym* | -kopensolaris* \
+ 	      | -amigaos* | -amigados* | -msdos* | -newsos* | -unicos* | -aof* \
+-	      | -aos* | -aros* \
++	      | -posnk* | -aos* | -aros* \
+ 	      | -nindy* | -vxsim* | -vxworks* | -ebmon* | -hms* | -mvs* \
+ 	      | -clix* | -riscos* | -uniplus* | -iris* | -rtu* | -xenix* \
+ 	      | -hiux* | -386bsd* | -knetbsd* | -mirbsd* | -netbsd* \

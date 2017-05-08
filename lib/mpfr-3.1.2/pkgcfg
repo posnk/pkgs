@@ -1,0 +1,13 @@
+# posnk package configuration
+PKGINFO_NAME="mpfr-3.1.2"
+PKGINFO_DESC="GNU MPFR"
+PKGINFO_FETCHTYPE="dist"
+PKGINFO_FETCHOPTS="-xzf"
+PKGINFO_FETCHURL="http://www.mpfr.org/mpfr-3.1.2/mpfr-3.1.2.tar.gz"
+PKGINFO_PATCHTYPE="pkg"
+PKGINFO_BUILDTYPE="autotools"
+PKGINFO_PREFIX="/usr"
+PKGINFO_ITARGET="install"
+PKGINFO_BTARGET=""
+PKGINFO_VERSION="3.1.2_posnk"
+PKGINFO_DEPS="lib/newlib-2.1.0 lib/gmp-6.0.0"

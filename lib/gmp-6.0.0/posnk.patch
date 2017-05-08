@@ -1,0 +1,116 @@
+diff -rupN /media/stor14/Projects/OS/posnk_buildenv/src3p/gmp-6.0.0/configfsf.sub gmp-6.0.0/configfsf.sub
+--- /media/stor14/Projects/OS/posnk_buildenv/src3p/gmp-6.0.0/configfsf.sub	2014-03-24 22:43:07.000000000 +0100
++++ gmp-6.0.0/configfsf.sub	2014-05-07 02:14:29.069145227 +0200
+@@ -1356,7 +1356,7 @@ case $os in
+ 	      | -hpux* | -unos* | -osf* | -luna* | -dgux* | -auroraux* | -solaris* \
+ 	      | -sym* | -kopensolaris* | -plan9* \
+ 	      | -amigaos* | -amigados* | -msdos* | -newsos* | -unicos* | -aof* \
+-	      | -aos* | -aros* \
++	      | -aos* | -posnk* | -aros* \
+ 	      | -nindy* | -vxsim* | -vxworks* | -ebmon* | -hms* | -mvs* \
+ 	      | -clix* | -riscos* | -uniplus* | -iris* | -rtu* | -xenix* \
+ 	      | -hiux* | -386bsd* | -knetbsd* | -mirbsd* | -netbsd* \
+diff -rupN /media/stor14/Projects/OS/posnk_buildenv/src3p/gmp-6.0.0/doc/gmp.info-1 gmp-6.0.0/doc/gmp.info-1
+--- /media/stor14/Projects/OS/posnk_buildenv/src3p/gmp-6.0.0/doc/gmp.info-1	2014-03-24 22:43:30.000000000 +0100
++++ gmp-6.0.0/doc/gmp.info-1	2014-03-25 15:38:20.000000000 +0100
+@@ -936,7 +936,7 @@ FreeBSD 7.x, 8.x, 9.0, 9.1, 9.2
+      `gm4', which GMP cannot guess.
+ 
+ FreeBSD 7.x, 8.x, 9.x
+-     GMP releases starting with 5.2 do not support `ABI=32' on
++     GMP releases starting with 6.0 do not support `ABI=32' on
+      FreeBSD/amd64 prior to release 10.0 of the system.  The cause is a
+      broken `limits.h', which GMP no longer works around.
+ 
+@@ -1304,20 +1304,20 @@ There are six classes of functions in th
+      functions in this class.  (*note Integer Functions::)
+ 
+   2. Functions for rational number arithmetic, with names beginning with
+-     `mpq_'.  The associated type is `mpq_t'.  There are about 40
++     `mpq_'.  The associated type is `mpq_t'.  There are about 35
+      functions in this class, but the integer functions can be used for
+      arithmetic on the numerator and denominator separately.  (*note
+      Rational Number Functions::)
+ 
+   3. Functions for floating-point arithmetic, with names beginning with
+-     `mpf_'.  The associated type is `mpf_t'.  There are about 60
++     `mpf_'.  The associated type is `mpf_t'.  There are about 70
+      functions is this class.  (*note Floating-point Functions::)
+ 
+   4. Fast low-level functions that operate on natural numbers.  These
+      are used by the functions in the preceding groups, and you can
+      also call them directly from very time-critical user programs.
+      These functions' names begin with `mpn_'.  The associated type is
+-     array of `mp_limb_t'.  There are about 30 (hard-to-use) functions
++     array of `mp_limb_t'.  There are about 60 (hard-to-use) functions
+      in this class.  (*note Low-level Functions::)
+ 
+   5. Miscellaneous functions.  Functions for setting up custom
+diff -rupN /media/stor14/Projects/OS/posnk_buildenv/src3p/gmp-6.0.0/doc/gmp.texi gmp-6.0.0/doc/gmp.texi
+--- /media/stor14/Projects/OS/posnk_buildenv/src3p/gmp-6.0.0/doc/gmp.texi	2014-03-24 22:43:07.000000000 +0100
++++ gmp-6.0.0/doc/gmp.texi	2014-03-25 15:37:55.000000000 +0100
+@@ -1522,7 +1522,7 @@ GNU m4 under the name @samp{gm4}, which
+ 
+ @item FreeBSD 7.x, 8.x, 9.x
+ @cindex FreeBSD
+-GMP releases starting with 5.2 do not support @samp{ABI=32} on FreeBSD/amd64
++GMP releases starting with 6.0 do not support @samp{ABI=32} on FreeBSD/amd64
+ prior to release 10.0 of the system.  The cause is a broken @code{limits.h},
+ which GMP no longer works around.
+ 
+@@ -1977,14 +1977,14 @@ functions in this class.  (@pxref{Intege
+ 
+ @item
+ Functions for rational number arithmetic, with names beginning with
+-@code{mpq_}.  The associated type is @code{mpq_t}.  There are about 40
++@code{mpq_}.  The associated type is @code{mpq_t}.  There are about 35
+ functions in this class, but the integer functions can be used for arithmetic
+ on the numerator and denominator separately.  (@pxref{Rational Number
+ Functions})
+ 
+ @item
+ Functions for floating-point arithmetic, with names beginning with
+-@code{mpf_}.  The associated type is @code{mpf_t}.  There are about 60
++@code{mpf_}.  The associated type is @code{mpf_t}.  There are about 70
+ functions is this class.  (@pxref{Floating-point Functions})
+ 
+ @item
+@@ -1992,7 +1992,7 @@ Fast low-level functions that operate on
+ the functions in the preceding groups, and you can also call them directly
+ from very time-critical user programs.  These functions' names begin with
+ @code{mpn_}.  The associated type is array of @code{mp_limb_t}.  There are
+-about 30 (hard-to-use) functions in this class.  (@pxref{Low-level Functions})
++about 60 (hard-to-use) functions in this class.  (@pxref{Low-level Functions})
+ 
+ @item
+ Miscellaneous functions.  Functions for setting up custom allocation and
+diff -rupN /media/stor14/Projects/OS/posnk_buildenv/src3p/gmp-6.0.0/doc/stamp-vti gmp-6.0.0/doc/stamp-vti
+--- /media/stor14/Projects/OS/posnk_buildenv/src3p/gmp-6.0.0/doc/stamp-vti	2014-03-24 22:43:29.000000000 +0100
++++ gmp-6.0.0/doc/stamp-vti	2014-03-25 15:38:20.000000000 +0100
+@@ -1,4 +1,4 @@
+-@set UPDATED 24 March 2014
++@set UPDATED 25 March 2014
+ @set UPDATED-MONTH March 2014
+ @set EDITION 6.0.0
+ @set VERSION 6.0.0
+diff -rupN /media/stor14/Projects/OS/posnk_buildenv/src3p/gmp-6.0.0/doc/version.texi gmp-6.0.0/doc/version.texi
+--- /media/stor14/Projects/OS/posnk_buildenv/src3p/gmp-6.0.0/doc/version.texi	2014-03-24 22:43:29.000000000 +0100
++++ gmp-6.0.0/doc/version.texi	2014-03-25 15:38:20.000000000 +0100
+@@ -1,4 +1,4 @@
+-@set UPDATED 24 March 2014
++@set UPDATED 25 March 2014
+ @set UPDATED-MONTH March 2014
+ @set EDITION 6.0.0
+ @set VERSION 6.0.0
+diff -rupN /media/stor14/Projects/OS/posnk_buildenv/src3p/gmp-6.0.0/NEWS gmp-6.0.0/NEWS
+--- /media/stor14/Projects/OS/posnk_buildenv/src3p/gmp-6.0.0/NEWS	2014-03-24 22:43:07.000000000 +0100
++++ gmp-6.0.0/NEWS	2014-03-25 15:37:55.000000000 +0100
+@@ -4,7 +4,7 @@ Verbatim copying and distribution of thi
+ medium, provided this notice is preserved.
+ 
+ 
+-Changes between GMP version 5.1.* and 5.2.0
++Changes between GMP version 5.1.* and 6.0.0
+ 
+   BUGS FIXED
+   * The function mpz_invert now considers any number invertible in Z/1Z.

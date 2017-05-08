@@ -1,0 +1,13 @@
+# posnk package configuration
+PKGINFO_NAME="gmp-6.0.0"
+PKGINFO_DESC="GNU GMP"
+PKGINFO_FETCHTYPE="dist"
+PKGINFO_FETCHOPTS="-xjf"
+PKGINFO_FETCHURL="http://ftp.gnu.org/gnu/gmp/gmp-6.0.0a.tar.bz2"
+PKGINFO_PATCHTYPE="pkg"
+PKGINFO_BUILDTYPE="autotools"
+PKGINFO_PREFIX="/usr"
+PKGINFO_ITARGET="install"
+PKGINFO_BTARGET=""
+PKGINFO_VERSION="6.0.0_posnk"
+PKGINFO_DEPS="lib/newlib-2.1.0"

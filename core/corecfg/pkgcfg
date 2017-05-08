@@ -1,0 +1,9 @@
+# posnk package configuration
+PKGINFO_NAME="corecfg"
+PKGINFO_DESC="POS core configuration"
+PKGINFO_FETCHTYPE="git"
+PKGINFO_GITURL="https://github.com/posnk/corecfg.git"
+PGKINFO_DOPATCH="no"
+PKGINFO_BUILDTYPE="pos"
+PKGINFO_VERSION="0.0.1"
+PKGINFO_DEPS=""
