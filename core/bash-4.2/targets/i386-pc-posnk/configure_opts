@@ -1,0 +1,1 @@
+PKG_CFG="--enable-job-control --enable-history --without-bash-malloc bash_cv_job_control_missing=present bash_cv_signal_vintage=posix"

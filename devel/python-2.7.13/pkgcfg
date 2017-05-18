@@ -1,0 +1,13 @@
+# posnk package configuration
+PKGINFO_NAME="Python-2.7.13"
+PKGINFO_DESC="The CPython Python interpreter"
+PKGINFO_FETCHTYPE="dist"
+PKGINFO_FETCHOPTS="-xzf"
+PKGINFO_FETCHURL="https://www.python.org/ftp/python/2.7.13/Python-2.7.13.tgz"
+PKGINFO_PATCHTYPE="pkg"
+PKGINFO_BUILDTYPE="autotools"
+PKGINFO_PREFIX="/usr"
+PKGINFO_ITARGET="install"
+PKGINFO_BTARGET=""
+PKGINFO_VERSION="2.7.13_posnk1"
+PKGINFO_DEPS="lib/newlib-2.1.0"

@@ -1,0 +1,13 @@
+# posnk package configuration
+PKGINFO_NAME="bash-4.2"
+PKGINFO_DESC="The Bourne Again SHell"
+PKGINFO_FETCHTYPE="dist"
+PKGINFO_FETCHOPTS="-xzf"
+PKGINFO_FETCHURL="https://ftp.gnu.org/gnu/bash/bash-4.2.tar.gz"
+PKGINFO_PATCHTYPE="pkg"
+PKGINFO_BUILDTYPE="autotools"
+PKGINFO_PREFIX="/"
+PKGINFO_ITARGET="install"
+PKGINFO_BTARGET=""
+PKGINFO_VERSION="4.2_posnk1"
+PKGINFO_DEPS="lib/newlib-2.1.0"

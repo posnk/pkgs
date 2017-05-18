@@ -1,0 +1,1 @@
+PKG_CFG="--build=i386 ac_cv_file__dev_ptmx=no ac_cv_file__dev_ptc=no ac_cv_func_wait3=no ac_cv_func_fsync=no ac_cv_func_fdatasync=no"

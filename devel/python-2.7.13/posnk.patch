@@ -1,0 +1,41 @@
+diff -rupN Python-2.7.13/config.sub ../src3m/Python-2.7.13/config.sub
+--- Python-2.7.13/config.sub	2016-12-17 20:05:07.000000000 +0000
++++ ../src3m/Python-2.7.13/config.sub	2017-05-18 01:22:45.195164013 +0100
+@@ -1388,7 +1388,7 @@ case $os in
+ 	      | -hpux* | -unos* | -osf* | -luna* | -dgux* | -auroraux* | -solaris* \
+ 	      | -sym* | -kopensolaris* | -plan9* \
+ 	      | -amigaos* | -amigados* | -msdos* | -newsos* | -unicos* | -aof* \
+-	      | -aos* | -aros* | -cloudabi* | -sortix* \
++	      | -posnk* | -aos* | -aros* | -cloudabi* | -sortix* \
+ 	      | -nindy* | -vxsim* | -vxworks* | -ebmon* | -hms* | -mvs* \
+ 	      | -clix* | -riscos* | -uniplus* | -iris* | -rtu* | -xenix* \
+ 	      | -hiux* | -386bsd* | -knetbsd* | -mirbsd* | -netbsd* \
+diff -rupN Python-2.7.13/configure ../src3m/Python-2.7.13/configure
+--- Python-2.7.13/configure	2016-12-17 20:05:07.000000000 +0000
++++ ../src3m/Python-2.7.13/configure	2017-05-18 01:44:00.919141666 +0100
+@@ -3245,6 +3245,9 @@ then
+ 	*-*-cygwin*)
+ 		ac_sys_system=Cygwin
+ 		;;
++	*-*-posnk*)
++		ac_sys_system=Posnk
++		;;
+ 	*)
+ 		# for now, limit cross builds to known configurations
+ 		MACHDEP="unknown"
+@@ -3283,6 +3286,15 @@ if test "$cross_compiling" = yes; then
+ 		case "$host_cpu" in
+ 		arm*)
+ 			_host_cpu=arm
++			;;
++		*)
++			_host_cpu=$host_cpu
++		esac
++		;;
++	*-*-posnk*)
++		case "$host_cpu" in
++		arm*)
++			_host_cpu=arm
+ 			;;
+ 		*)
+ 			_host_cpu=$host_cpu
