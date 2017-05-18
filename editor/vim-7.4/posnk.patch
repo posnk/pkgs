@@ -1,0 +1,12 @@
+diff -rupN vim74/configure ../src3m/vim74/configure
+--- vim74/configure	2010-05-15 12:03:08.000000000 +0100
++++ ../src3m/vim74/configure	2017-05-18 00:56:41.168216984 +0100
+@@ -2,5 +2,7 @@
+ 
+ # This is just a stub for the Unix configure script, to provide support for
+ # doing "./configure" in the top Vim directory.
+-
++BASEDIR=$(dirname "$0")
++echo "$BASEDIR"
++cp -r $BASEDIR/* "./"
+ cd src && exec ./configure "$@"

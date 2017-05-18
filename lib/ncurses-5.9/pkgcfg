@@ -1,0 +1,13 @@
+# posnk package configuration
+PKGINFO_NAME="ncurses-5.9"
+PKGINFO_DESC="ncurses library"
+PKGINFO_FETCHTYPE="dist"
+PKGINFO_FETCHOPTS="-xzf"
+PKGINFO_FETCHURL="ftp://invisible-island.net/ncurses/ncurses.tar.gz"
+PKGINFO_PATCHTYPE="pkg"
+PKGINFO_BUILDTYPE="autotools"
+PKGINFO_PREFIX="/usr"
+PKGINFO_ITARGET="install"
+PKGINFO_BTARGET=""
+PKGINFO_VERSION="5.9_posnk"
+PKGINFO_DEPS="lib/newlib-2.1.0"

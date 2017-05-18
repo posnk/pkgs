@@ -1,0 +1,28 @@
+diff -rupN ncurses-5.9/config.sub ../src3m/ncurses-5.9/config.sub
+--- ncurses-5.9/config.sub	2010-09-10 23:25:58.000000000 +0100
++++ ../src3m/ncurses-5.9/config.sub	2017-05-17 18:42:10.403677225 +0100
+@@ -1305,7 +1305,7 @@ case $os in
+ 	      | -hpux* | -unos* | -osf* | -luna* | -dgux* | -auroraux* | -solaris* \
+ 	      | -sym* | -kopensolaris* \
+ 	      | -amigaos* | -amigados* | -msdos* | -newsos* | -unicos* | -aof* \
+-	      | -aos* | -aros* \
++	      | -posnk* | -aos* | -aros* \
+ 	      | -nindy* | -vxsim* | -vxworks* | -ebmon* | -hms* | -mvs* \
+ 	      | -clix* | -riscos* | -uniplus* | -iris* | -rtu* | -xenix* \
+ 	      | -hiux* | -386bsd* | -knetbsd* | -mirbsd* | -netbsd* \
+diff -rupN ncurses-5.9/ncurses/tty/lib_twait.c ../src3m/ncurses-5.9/ncurses/tty/lib_twait.c
+--- ncurses-5.9/ncurses/tty/lib_twait.c	2010-12-25 23:43:58.000000000 +0000
++++ ../src3m/ncurses-5.9/ncurses/tty/lib_twait.c	2017-05-17 21:19:20.973621332 +0100
+@@ -53,6 +53,12 @@
+ #include <OS.h>
+ #endif
+ 
++#if PRECISE_GETTIME
++# if HAVE_SYS_TIME_H
++#  include <sys/time.h>
++# endif
++#endif
++
+ #if USE_FUNC_POLL
+ # if HAVE_SYS_TIME_H
+ #  include <sys/time.h>
