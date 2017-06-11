@@ -1,0 +1,11 @@
+# posnk package configuration
+# This package (the kernel) depends on libc solely to be able to install
+# the system headers.
+PKGINFO_NAME="posnk"
+PKGINFO_DESC="The kernel, integrated to the build system at last"
+PKGINFO_FETCHTYPE="git"
+PKGINFO_GITURL="https://github.com/posnk/posnk.git"
+PGKINFO_DOPATCH="no"
+PKGINFO_BUILDTYPE="pos"
+PKGINFO_VERSION="0.0.2"
+PKGINFO_DEPS="lib/newlib-2.1.0"
