@@ -1,0 +1,13 @@
+# posnk package configuration
+PKGINFO_NAME="binutils-2.34"
+PKGINFO_DESC="GNU binutils, version 2.34, includes ld, gas, objdump and various other utilities"
+PKGINFO_FETCHTYPE="dist"
+PKGINFO_FETCHOPTS="-xzf"
+PKGINFO_FETCHURL="http://ftp.gnu.org/gnu/binutils/binutils-2.34.tar.gz"
+PKGINFO_PATCHTYPE="pkg"
+PKGINFO_BUILDTYPE="autotools"
+PKGINFO_PREFIX="/usr"
+PKGINFO_ITARGET="install"
+PKGINFO_BTARGET=""
+PKGINFO_VERSION="2.34_posnk1"
+PKGINFO_DEPS="lib/newlib-2.1.0"

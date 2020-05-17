@@ -1,0 +1,1 @@
+PKG_CFG="--with-sysroot=/ --with-build-sysroot=\"$POSBUILDROOT/sysroot/$PKGMGR_TARGET\" tooldir= --disable-nls --disable-werror --target=$PKGMGR_TARGET"
