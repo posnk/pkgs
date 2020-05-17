@@ -1,0 +1,13 @@
+# posnk package configuration
+PKGINFO_NAME="gcc-9.3.0"
+PKGINFO_DESC="The GNU Compiler Collection, version 9.3.0"
+PKGINFO_FETCHTYPE="dist"
+PKGINFO_FETCHOPTS="-xzf"
+PKGINFO_FETCHURL="https://ftp.gnu.org/gnu/gcc/gcc-9.3.0/gcc-9.3.0.tar.gz"
+PKGINFO_PATCHTYPE="pkg"
+PKGINFO_BUILDTYPE="autotools"
+PKGINFO_PREFIX="/usr"
+PKGINFO_ITARGET="install-gcc"
+PKGINFO_BTARGET="all-gcc"
+PKGINFO_VERSION="9.3.0_posnk1"
+PKGINFO_DEPS="lib/newlib-2.1.0 devel/binutils-2.34 lib/gmp-6.0.0 lib/mpc-1.0.2 lib/mpfr-3.1.2"
