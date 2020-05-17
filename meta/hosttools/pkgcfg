@@ -3,4 +3,4 @@ PKGINFO_NAME="hosttools"
 PKGINFO_DESC=`cat $PKGMGR_PKGDIR/pkgdesc`
 PKGINFO_VERSION="meta"
 PKGINFO_FETCHTYPE="meta"
-PKGINFO_DEPS="lib/newlib-2.1.0 devel/gcc-4.7.2 devel/binutils-2.23.1"
+PKGINFO_DEPS="lib/newlib-2.1.0 devel/gcc-9.3.0 devel/binutils-2.34"
