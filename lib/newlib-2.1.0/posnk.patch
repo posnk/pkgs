@@ -19341,8 +19341,8 @@ diff -rupN newlib-2.1.0/newlib/libc/sys/posnk/posnk_sc.c ../src3m/newlib-2.1.0/n
 +#endif
 diff -rupN newlib-2.1.0/newlib/libc/sys/posnk/posnk_sc.h ../src3m/newlib-2.1.0/newlib/libc/sys/posnk/posnk_sc.h
 --- newlib-2.1.0/newlib/libc/sys/posnk/posnk_sc.h	1970-01-01 01:00:00.000000000 +0100
-+++ ../src3m/newlib-2.1.0/newlib/libc/sys/posnk/posnk_sc.h	2020-05-15 13:57:30.627754120 +0200
-@@ -0,0 +1,112 @@
++++ ../src3m/newlib-2.1.0/newlib/libc/sys/posnk/posnk_sc.h	2020-05-17 13:29:09.745413956 +0200
+@@ -0,0 +1,117 @@
 +/**
 + * kernel/syscall_ids.h
 + *
@@ -19452,6 +19452,11 @@ diff -rupN newlib-2.1.0/newlib/libc/sys/posnk/posnk_sc.h ../src3m/newlib-2.1.0/n
 +#define SYS_SYNC	76   
 +#define SYS_READDIR	77
 +#define SYS_POLL	78
++#define SYS_SIGACTION	79
++#define SYS_SIGALTSTACK	80
++#define SYS_SIGPENDING	81
++#define SYS_SIGSUSPEND	82
++#define SYS_UNAME	83
 +
 +uint32_t nk_do_syscall(uint32_t no, uint32_t param[4], uint32_t param_size[4]);
 +#endif
@@ -20073,8 +20078,8 @@ diff -rupN newlib-2.1.0/newlib/libc/sys/posnk/sc_file.c ../src3m/newlib-2.1.0/ne
 +
 diff -rupN newlib-2.1.0/newlib/libc/sys/posnk/sc_proc.c ../src3m/newlib-2.1.0/newlib/libc/sys/posnk/sc_proc.c
 --- newlib-2.1.0/newlib/libc/sys/posnk/sc_proc.c	1970-01-01 01:00:00.000000000 +0100
-+++ ../src3m/newlib-2.1.0/newlib/libc/sys/posnk/sc_proc.c	2020-05-15 13:57:30.627754120 +0200
-@@ -0,0 +1,386 @@
++++ ../src3m/newlib-2.1.0/newlib/libc/sys/posnk/sc_proc.c	2020-05-17 13:33:08.934809396 +0200
+@@ -0,0 +1,393 @@
 +#include <stdint.h>
 +#include <errno.h>
 +#include <stdlib.h>
@@ -20460,7 +20465,14 @@ diff -rupN newlib-2.1.0/newlib/libc/sys/posnk/sc_proc.c ../src3m/newlib-2.1.0/ne
 +	*ngroups = 0;
 +	return *ngroups;
 +}
-+
++#include <sys/utsname.h>
++int uname( struct utsname *s ) 
++{
++   uint32_t a[] = {(uint32_t) s, 0, 0, 0};
++   uint32_t b[] = {0, 0, 0, 0};
++   return (int) nk_do_syscall(SYS_UNAME, a, b); 
++	
++}
 diff -rupN newlib-2.1.0/newlib/libc/sys/posnk/sys/dirent.h ../src3m/newlib-2.1.0/newlib/libc/sys/posnk/sys/dirent.h
 --- newlib-2.1.0/newlib/libc/sys/posnk/sys/dirent.h	1970-01-01 01:00:00.000000000 +0100
 +++ ../src3m/newlib-2.1.0/newlib/libc/sys/posnk/sys/dirent.h	2020-05-15 13:57:30.627754120 +0200
@@ -21098,6 +21110,24 @@ diff -rupN newlib-2.1.0/newlib/libc/sys/posnk/sys/utmp.h ../src3m/newlib-2.1.0/n
 +void pututline (struct utmp *);
 +void setutent (void);
 +void utmpname (const char *);
++
++#endif
+diff -rupN newlib-2.1.0/newlib/libc/sys/posnk/sys/utsname.h ../src3m/newlib-2.1.0/newlib/libc/sys/posnk/sys/utsname.h
+--- newlib-2.1.0/newlib/libc/sys/posnk/sys/utsname.h	1970-01-01 01:00:00.000000000 +0100
++++ ../src3m/newlib-2.1.0/newlib/libc/sys/posnk/sys/utsname.h	2020-05-17 13:28:02.493021431 +0200
+@@ -0,0 +1,14 @@
++#ifndef __SYS_UTSNAME_H__
++#define __SYS_UTSNAME_H__
++
++struct utsname {
++	char	sysname	[20];
++	char	nodename[80];
++	char	release	[20];
++	char	version	[80];
++	char	machine	[10];
++};
++
++int uname( struct utsname * );
 +
 +#endif
 diff -rupN newlib-2.1.0/newlib/libc/sys/posnk/sysconf.c ../src3m/newlib-2.1.0/newlib/libc/sys/posnk/sysconf.c
